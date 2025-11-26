@@ -536,7 +536,7 @@ class SteamManager:
         cmd = "flatpak"
         # cmd = "xdg-open"
         # reverting the string literal strategy as games may contain apostrophes (Tony Hawk's Pro Skater)
-        args = 'flatpak run --command=bottles-cli com.usebottles.bottles run -b "{0} -p "{1}' 
+        args = 'run --command=bottles-cli com.usebottles.bottles run -b "{0}" -p "{1}"' 
         # args = "bottles:run/'{0}'/'{1}'"
 
         if self.userdata_path is None:
