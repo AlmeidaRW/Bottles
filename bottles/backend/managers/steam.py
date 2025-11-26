@@ -531,9 +531,13 @@ class SteamManager:
         SignalManager.send(Signals.GShowUri, Result(data=uri))
 
     def add_shortcut(self, program_name: str, program_path: str):
+        # Need to find a way to detect if running under SteamOS/flatpak
         logging.info(f"Adding shortcut for {program_name}")
-        cmd = "xdg-open"
-        args = "bottles:run/'{0}'/'{1}'"
+        cmd = "flatpak"
+        # cmd = "xdg-open"
+        # reverting the string literal strategy as games may contain apostrophes (Tony Hawk's Pro Skater)
+        args = 'flatpak run --command=bottles-cli com.usebottles.bottles run -b "{0} -p "{1}' 
+        # args = "bottles:run/'{0}'/'{1}'"
 
         if self.userdata_path is None:
             logging.warning("Userdata path is not set")
